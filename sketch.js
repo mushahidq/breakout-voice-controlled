@@ -47,23 +47,15 @@ function gotCommand(error, results) {
     });
   }
   if (results[0].label === 'go') {
-    if (livesRestart) {
-      livesRestart = false
-      circle.x = moveMent + 50
-      circle.y = 380
-    }
-    if (!playingGame) {
-      paddle.isMovingLeft = false;
-      paddle.isMovingRight = false;  
-      playingGame = true;
-      youWin = false;
-      if (bricks.length === 0) {
-        for (var i = 0; i < bricks.length; i++) {
-          bricks.push(new Bricks());
-        }
+    paddle.isMovingLeft = false;
+    paddle.isMovingRight = false;  
+    playingGame = true;
+    youWin = false;
+    if (bricks.length === 0) {
+      for (var i = 0; i < bricks.length; i++) {
+        bricks.push(new Bricks());
       }
     }
-    
   }
   if (results[0].label == 'stop') {
     paddle.isMovingLeft = false;
@@ -87,6 +79,10 @@ function keyPressed() {
   }
 }
 
+function keyReleased() {
+  paddle.isMovingLeft = false;
+  paddle.isMovingRight = false; 
+}
 
 function draw() {
   background('black');
